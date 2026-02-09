@@ -42,7 +42,7 @@ import org.springframework.web.bind.annotation.RestController;
             return mathematischeGrundlagen.mathematische_Grundlagen();
     }
         @GetMapping("/neuronaleNetze")
-        public Grundlagen neuronaleNetze(){
+        public Grundlagen neuronaleNetze()  {
             return neuronaleNetze.neuronale_Netze();
         }
 
