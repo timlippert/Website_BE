@@ -1,6 +1,6 @@
 package tim_KI.KI_Webpage.Repository.GrundlagenRepository;
 import org.springframework.stereotype.Component;
-import tim_KI.KI_Webpage.DTO.Grundlagen;
+import tim_KI.KI_Webpage.Model.Grundlagen;
 
 @Component
 public class Neuronale_Netze {

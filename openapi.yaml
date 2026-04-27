@@ -1,0 +1,402 @@
+openapi: 3.0.0
+info:
+  title: KI Webpage Backend API
+  description: |
+    API für die KI-Bildungswebseite mit Inhalten zu Machine Learning, Deep Learning und KI-Grundlagen.
+    
+    Die API bietet RESTful Endpoints zur Abfrage von Inhalten zu verschiedenen KI-Themen.
+  version: 1.0.0
+  contact:
+    name: KI Webpage Team
+    url: http://localhost:8080
+  license:
+    name: MIT
+
+servers:
+  - url: http://localhost:8080
+    description: Development Server
+
+tags:
+  - name: Grundlagen
+    description: KI-Grundlagen und Basiskonzepte
+  - name: Maschinelles Lernen
+    description: Verschiedene Methoden des Machine Learning
+  - name: Deep Learning
+    description: Spezielle Deep Learning Techniken
+
+components:
+  schemas:
+    Grundlagen:
+      type: object
+      description: DTO für Grundlagen-Inhalte
+      properties:
+        title:
+          type: string
+          description: Titel des Inhalts
+          example: "Was ist künstliche Intelligenz?"
+        text:
+          type: string
+          description: Detaillierter Textinhalt
+          example: "Künstliche Intelligenz (KI) ist ein Teilgebiet der Informatik..."
+        page:
+          type: integer
+          description: Seitennummer des Inhalts
+          example: 1
+      required:
+        - title
+        - text
+        - page
+
+    Maschinelles_Lernen:
+      type: object
+      description: DTO für Machine Learning Inhalte
+      properties:
+        title:
+          type: string
+          description: Titel des Machine Learning Themas
+          example: "Supervised Learning"
+        text:
+          type: string
+          description: Detaillierter Textinhalt zum ML-Thema
+          example: "Supervised Learning ist eine Methode des Machine Learning..."
+        page:
+          type: integer
+          description: Seitennummer des Inhalts
+          example: 1
+      required:
+        - title
+        - text
+        - page
+
+    DeepLearning:
+      type: object
+      description: DTO für Deep Learning Inhalte
+      properties:
+        title:
+          type: string
+          description: Titel des Deep Learning Konzepts
+          example: "Convolutional Neural Networks"
+        text:
+          type: string
+          description: Detaillierter Textinhalt zum DL-Thema
+          example: "CNNs sind spezialisierte neuronale Netze für Bildverarbeitung..."
+        page:
+          type: integer
+          description: Seitennummer des Inhalts
+          example: 1
+      required:
+        - title
+        - text
+        - page
+
+    Error:
+      type: object
+      description: Fehler-Response
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          description: Zeitstempel des Fehlers
+        status:
+          type: integer
+          description: HTTP Status Code
+        error:
+          type: string
+          description: Fehlerkategorie
+        message:
+          type: string
+          description: Fehlermeldung
+        path:
+          type: string
+          description: Request Path
+
+  responses:
+    NotFound:
+      description: Ressource nicht gefunden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Interner Server-Fehler
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+paths:
+  /api/grundlagen/was-ist-ki:
+    get:
+      tags:
+        - Grundlagen
+      summary: Was ist KI?
+      description: |
+        Gibt eine Einführung in Künstliche Intelligenz zurück.
+        Dieser Endpoint liefert grundlegende Informationen über die Definition und die Bedeutung von KI.
+      operationId: getWasIstKI
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grundlagen'
+              example:
+                title: "Was ist künstliche Intelligenz?"
+                text: "Künstliche Intelligenz (KI) ist ein Teilgebiet der Informatik, das sich mit der Automationen von intelligentem Verhalten befasst..."
+                page: 1
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/grundlagen/geschichte:
+    get:
+      tags:
+        - Grundlagen
+      summary: Geschichte der KI
+      description: |
+        Gibt eine historische Übersicht der Entwicklung von Künstlicher Intelligenz zurück.
+        Umfasst wichtige Meilensteine und Entwicklungen von den 1950er Jahren bis heute.
+      operationId: getGeschichte
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grundlagen'
+              example:
+                title: "Geschichte der Künstlichen Intelligenz"
+                text: "Die Geschichte der KI beginnt mit Alan Turings Test im Jahr 1950..."
+                page: 2
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/grundlagen/mathematische-grundlagen:
+    get:
+      tags:
+        - Grundlagen
+      summary: Mathematische Grundlagen
+      description: |
+        Gibt mathematische Konzepte und Grundlagen zurück, die für KI und Machine Learning essentiell sind.
+        Umfasst Themen wie Lineare Algebra, Wahrscheinlichkeitstheorie und Analysis.
+      operationId: getMatematischeGrundlagen
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grundlagen'
+              example:
+                title: "Mathematische Grundlagen der KI"
+                text: "Lineare Algebra, Kalkül und Wahrscheinlichkeitstheorie sind die fundamentalen mathematischen Werkzeuge..."
+                page: 3
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/grundlagen/neuronalenetze:
+    get:
+      tags:
+        - Grundlagen
+      summary: Neuronale Netze
+      description: |
+        Gibt eine Einführung in neuronale Netze zurück.
+        Behandelt die Architektur, Funktionsweise und Grundkonzepte von künstlichen neuronalen Netzen.
+      operationId: getNeuronaleNetze
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Grundlagen'
+              example:
+                title: "Neuronale Netze"
+                text: "Neuronale Netze sind von der Biologie inspiriert und bestehen aus verbundenen Knoten (Neuronen)..."
+                page: 4
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/lernen/rl:
+    get:
+      tags:
+        - Maschinelles Lernen
+      summary: Reinforcement Learning
+      description: |
+        Gibt Informationen über Reinforcement Learning zurück.
+        Beschreibt Konzepte wie Agent, Umwelt, Reward und Q-Learning.
+      operationId: getReinforcementLearning
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Maschinelles_Lernen'
+              example:
+                title: "Reinforcement Learning"
+                text: "Reinforcement Learning ist ein Ansatz, bei dem ein Agent durch Interaktion mit einer Umgebung lernt..."
+                page: 1
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/lernen/ssl:
+    get:
+      tags:
+        - Maschinelles Lernen
+      summary: Semi- und Self-Learning
+      description: |
+        Gibt Informationen über Semi-Supervised Learning und Self-Supervised Learning zurück.
+        Behandelt Szenarien mit teilweise beschrifteten Daten und selbstüber wachtem Lernen.
+      operationId: getSemiAndSelfLearning
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Maschinelles_Lernen'
+              example:
+                title: "Semi- und Self-Learning"
+                text: "Semi-Supervised Learning kombiniert beschriftete und unbeschriftete Daten..."
+                page: 2
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/lernen/sl:
+    get:
+      tags:
+        - Maschinelles Lernen
+      summary: Supervised Learning
+      description: |
+        Gibt Informationen über Supervised Learning zurück.
+        Behandelt Klassifikation, Regression und verschiedene Algorithmen wie Decision Trees und SVM.
+      operationId: getSupervisedLearning
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Maschinelles_Lernen'
+              example:
+                title: "Supervised Learning"
+                text: "Supervised Learning verwendet beschriftete Trainingsdaten, um Modelle zu trainieren..."
+                page: 3
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/lernen/ul:
+    get:
+      tags:
+        - Maschinelles Lernen
+      summary: Unsupervised Learning
+      description: |
+        Gibt Informationen über Unsupervised Learning zurück.
+        Behandelt Clustering, Dimensionalitätsreduktion und Anomalieerkennung.
+      operationId: getUnsupervisedLearning
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Maschinelles_Lernen'
+              example:
+                title: "Unsupervised Learning"
+                text: "Unsupervised Learning findet Muster in unbeschrifteten Daten..."
+                page: 4
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/lernen/deep/autoencoder:
+    get:
+      tags:
+        - Deep Learning
+      summary: Autoencoder
+      description: |
+        Gibt Informationen über Autoencoders zurück.
+        Behandelt Encoder-Decoder Architektur, Dimensionalitätsreduktion und Anomalieerkennung mit Autoencoders.
+      operationId: getAutoencoder
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeepLearning'
+              example:
+                title: "Autoencoders"
+                text: "Autoencoders sind neuronale Netze, die darin trainiert sind, Eingaben zu rekonstruieren..."
+                page: 1
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/lernen/deep/cnn:
+    get:
+      tags:
+        - Deep Learning
+      summary: CNN (Convolutional Neural Networks)
+      description: |
+        Gibt Informationen über Convolutional Neural Networks zurück.
+        Behandelt Convolution, Pooling, Architekten wie LeNet und ResNet für Bildverarbeitung.
+      operationId: getCNN
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeepLearning'
+              example:
+                title: "Convolutional Neural Networks (CNN)"
+                text: "CNNs sind spezialisierte neuronale Netze für die Verarbeitung gitterförmiger Daten wie Bilder..."
+                page: 2
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /api/lernen/deep/gan:
+    get:
+      tags:
+        - Deep Learning
+      summary: GAN (Generative Adversarial Networks)
+      description: |
+        Gibt Informationen über Generative Adversarial Networks zurück.
+        Behandelt Generator-Diskriminator Architektur, Anwendungen und verschiedene GAN-Varianten.
+      operationId: getGAN
+      responses:
+        '200':
+          description: Erfolgreiche Anfrage
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeepLearning'
+              example:
+                title: "Generative Adversarial Networks (GAN)"
+                text: "GANs bestehen aus einem Generator und einem Diskriminator, die in einem adversarialen Prozess trainiert werden..."
+                page: 3
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+

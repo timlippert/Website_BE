@@ -1,7 +1,7 @@
 package tim_KI.KI_Webpage.Controller;
 
 import org.springframework.web.bind.annotation.*;
-import tim_KI.KI_Webpage.DTO.Maschinelles_Lernen;
+import tim_KI.KI_Webpage.Model.Maschinelles_Lernen;
 import tim_KI.KI_Webpage.Repository.Maschinenelles_Lernen.*;
 
 @CrossOrigin(origins = "http://localhost:4200")

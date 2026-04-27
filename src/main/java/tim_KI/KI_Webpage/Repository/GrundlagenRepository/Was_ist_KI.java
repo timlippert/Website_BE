@@ -1,6 +1,6 @@
 package tim_KI.KI_Webpage.Repository.GrundlagenRepository;
 import org.springframework.stereotype.Component;
-import tim_KI.KI_Webpage.DTO.Grundlagen;
+import tim_KI.KI_Webpage.Model.Grundlagen;
 
 @Component
 public class Was_ist_KI {
@@ -13,3 +13,8 @@ public class Was_ist_KI {
         return grundlagen;
     }
 }
+
+/*
+Controller sollen nur Services kennen, keine Datenhaltungsobjekte
+-> Controller -> Service -> Returnt Datenobjekt
+ */
