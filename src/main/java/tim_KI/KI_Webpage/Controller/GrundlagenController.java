@@ -2,47 +2,36 @@ package tim_KI.KI_Webpage.Controller;
 
 import org.springframework.web.bind.annotation.*;
 import tim_KI.KI_Webpage.Model.Grundlagen;
-import tim_KI.KI_Webpage.Repository.GrundlagenRepository.*;
+import tim_KI.KI_Webpage.Service.GrundlagenService;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/grundlagen")
 public class GrundlagenController {
 
-    private final Was_ist_KI wasIstKi;
-    private final Geschichte geschichte;
-    private final Mathematische_Grundlagen mathematischeGrundlagen;
-    private final Neuronale_Netze neuronaleNetze;
+    private final GrundlagenService grundlagenService;
 
-    public GrundlagenController(
-            Was_ist_KI wasIstKi,
-            Geschichte geschichte,
-            Mathematische_Grundlagen mathematischeGrundlagen,
-            Neuronale_Netze neuronaleNetze
-    ) {
-        this.wasIstKi = wasIstKi;
-        this.geschichte = geschichte;
-        this.mathematischeGrundlagen = mathematischeGrundlagen;
-        this.neuronaleNetze = neuronaleNetze;
+    public GrundlagenController(GrundlagenService grundlagenService) {
+        this.grundlagenService = grundlagenService;
     }
 
     @GetMapping("/was-ist-ki")
     public Grundlagen wasIstKi() {
-        return wasIstKi.was_ist_KI();
+        return grundlagenService.getWasIstKI();
     }
 
     @GetMapping("/geschichte")
     public Grundlagen geschichte() {
-        return geschichte.geschichte();
+        return grundlagenService.getGeschichte();
     }
 
     @GetMapping("/mathematische-grundlagen")
     public Grundlagen mathematischeGrundlagen() {
-        return mathematischeGrundlagen.mathematische_Grundlagen();
+        return grundlagenService.getMathematischeGrundlagen();
     }
 
     @GetMapping("/neuronalenetze")
     public Grundlagen neuronaleNetze() {
-        return neuronaleNetze.neuronale_Netze();
+        return grundlagenService.getNeuronaleNetze();
     }
 }
