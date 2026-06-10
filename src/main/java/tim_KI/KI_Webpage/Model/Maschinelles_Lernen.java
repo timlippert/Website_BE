@@ -1,4 +1,4 @@
-package tim_KI.KI_Webpage.DTO;
+package tim_KI.KI_Webpage.Model;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -1,7 +1,7 @@
 package tim_KI.KI_Webpage.Controller;
 
 import org.springframework.web.bind.annotation.*;
-import tim_KI.KI_Webpage.DTO.Grundlagen;
+import tim_KI.KI_Webpage.Model.Grundlagen;
 import tim_KI.KI_Webpage.Repository.GrundlagenRepository.*;
 
 @CrossOrigin(origins = "http://localhost:4200")

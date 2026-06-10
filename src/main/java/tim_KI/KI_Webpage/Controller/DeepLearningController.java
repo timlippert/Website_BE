@@ -1,11 +1,10 @@
 package tim_KI.KI_Webpage.Controller;
 
 import org.springframework.web.bind.annotation.*;
-import tim_KI.KI_Webpage.DTO.DeepLearning;
+import tim_KI.KI_Webpage.Model.DeepLearning;
 import tim_KI.KI_Webpage.Repository.DeepLearningRepository.Autoencoder;
 import tim_KI.KI_Webpage.Repository.DeepLearningRepository.CNN;
 import tim_KI.KI_Webpage.Repository.DeepLearningRepository.GAN;
-import tim_KI.KI_Webpage.Repository.Maschinenelles_Lernen.*;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -33,11 +32,11 @@ public class DeepLearningController {
 
     @GetMapping("/cnn")
     public DeepLearning cnn() {
-        return cnn.CNN();
+        return cnn.cnn();
     }
 
     @GetMapping("/gan")
     public DeepLearning gan() {
-        return gan.GAN();
+        return gan.gan();
     }
 }

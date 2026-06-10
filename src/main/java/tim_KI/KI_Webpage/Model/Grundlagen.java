@@ -1,4 +1,4 @@
-package tim_KI.KI_Webpage.DTO;
+package tim_KI.KI_Webpage.Model;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class DeepLearning {
+public class Grundlagen {
     private String title;
     private String text;
     private int page;
